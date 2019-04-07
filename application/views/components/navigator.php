@@ -8,21 +8,38 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-        <a class="nav-item nav-link active text-white" href="#">Home <span class="sr-only">(current)</span></a>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Services
-            </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item " href="#">Rental Event Equipment</a>
-                    <a class="dropdown-item " href="#">Event Maker</a>
-                    <a class="dropdown-item " href="#">Consultant</a>
-            </div>
-      </li>
-        <a class="nav-item nav-link text-white" href="#">Gallery</a>
-        <a class="nav-item nav-link text-white" href="#">Contact</a>
-        <a class="nav-item nav-link text-white" href="#">About Us</a>
+        <!--isi -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                <a class="nav-item nav-link active text-white" href="#">Home <span class="sr-only">(current)</span></a>
+                <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Services
+                        </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item " href="#">Rental Event Equipment</a>
+                                <a class="dropdown-item " href="#">Event Maker</a>
+                                <a class="dropdown-item " href="#">Consultant</a>
+                        </div>
+                    </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link text-white" href="#">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link text-white" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-item nav-link text-white" href="#">About Us</a>
+                </li>
+            </ul>
+            
         </div>
+        <span class="navbar-text my-2 my-lg-0">
+                Navbar text with an inline element
+        </span>
     </div>
+    
 </nav>
+
+
     
