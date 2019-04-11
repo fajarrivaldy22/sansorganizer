@@ -1,3 +1,4 @@
+<link rel="icon" href="<?php echo base_url('assets/img/logo.png')?>">
 <nav class="navbar navbar-expand-lg navbar-light bg-dark border-bottom border-danger">
     <a class="navbar-brand" href="#">
         <img src="<?php echo base_url('assets/img/logo.png')?>" width="30" height="30" alt="">
@@ -17,7 +18,7 @@
                         Services
                         </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item " href="#">Rental Event Equipment</a>
+                                <a class="dropdown-item " href="<?php echo site_url().'/welcome/rentaleventequipment'; ?>">Rental Event Equipment</a>
                                 <a class="dropdown-item " href="#">Event Maker</a>
                                 <a class="dropdown-item " href="#">Consultant</a>
                         </div>
@@ -33,12 +34,63 @@
                 </li>
             </ul>
             
+            
         </div>
-        <span class="navbar-text my-2 my-lg-0">
-                Navbar text with an inline element
-        </span>
+            <!--modal -->
+            <?php 
+                if($this->session->userdata('login')==0){
+                    echo  '<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Login">Login</button>';
+                }else{
+                    $drpdown = '<div class="dropdown ml-auto p-2 bd-highlight">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      hi, '.$this->session->userdata('name').'
+                    </a>
+                  
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="#">Setting</a>
+                      <a class="dropdown-item" href="<?php echo site_url.?>">Logout</a>
+                    </div>
+                  </div>';
+                  echo $drpdown;
+                }
+            ?>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="Login" tabindex="-1" role="dialog" aria-labelledby="LoginLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form method='post' action="<?php echo site_url().'/welcome/login'; ?>">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="LoginLabel">Login</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                
+                                    <div class="form-group row">
+                                        <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                                        <div class="col-sm-10">
+                                            <input type="email" class="form-control" id="inputEmail" placeholder="E-mail" name='email'>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                                        <div class="col-sm-10">
+                                            <input type="password" class="form-control" id="inputPassword" placeholder="Password" name='password'>
+                                        </div>
+                                    </div>
+                                    <a href='http://www.google.com'>Register</a>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="submit" class="btn btn-primary" id="submit" name='submit'>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--end of modal -->   
     </div>
-    
 </nav>
 
 

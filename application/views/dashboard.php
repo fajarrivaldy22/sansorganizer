@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Dashboard</title>
-    <?php $this->load->view('components/assets') ?>
+        <?php $this->load->view('components/assets') ?>
     <style>
         .logo-navbar{
             width:47px;
@@ -15,8 +15,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php $this->load->view('components/navigator');
+        $name = $this->session->userdata('name');
+        echo $name
+    ?>
 </head>
 <body>
-    <?php $this->load->view('components/navigator') ?>
+    
 </body>
 </html>
