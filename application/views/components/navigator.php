@@ -38,20 +38,22 @@
         </div>
             <!--modal -->
             <?php 
-                if($this->session->userdata('login')==0){
-                    echo  '<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Login">Login</button>';
-                }else{
-                    $drpdown = '<div class="dropdown ml-auto p-2 bd-highlight">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      hi, '.$this->session->userdata('name').'
-                    </a>
-                  
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="#">Setting</a>
-                      <a class="dropdown-item" href="<?php echo site_url.?>">Logout</a>
+                if($this->session->userdata('login')==0){ ?>
+                    <button type="button"  class="btn btn-primary btn-sm ml-auto p-2 bd-highlight" data-toggle="modal" data-target="#Login">Login</button>
+                    <?php
+                }else{ ?>
+
+                    <div class="dropdown  ml-auto p-2 bd-highlight">
+                        <a class="btn  btn-sm btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <?php echo 'hi, '.$this->session->userdata('name'); ?>
+                        </a>
+                    
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">Setting</a>
+                            <a class="dropdown-item" href="<?php echo site_url().'/welcome/logout'; ?> ">Logout</a>
+                        </div>
                     </div>
-                  </div>';
-                  echo $drpdown;
+                    <?php
                 }
             ?>
             

@@ -20,16 +20,23 @@ class Welcome extends CI_Controller {
 	 */
 	
 	function __construct(){
-		 parent::__construct();
-		 $this->load->model('LoginModel');
+		parent::__construct();
+		$this->load->model('LoginModel');
+		$this->load->model('RentCarModel');
 	} 
-	 public function index()
+	
+	public function index()
 	{
 		$this->load->view('dashboard');
 	}
 	
 	public function rentaleventequipment(){
-		$this->load->view('rentcar');
+		$prod = $this->RentCarModel->fetchvehicle();
+		$data = array(
+			'products'=>$prod
+		);
+
+		$this->load->view('rentcar',$data);
 	}
 
 	public function login(){
@@ -55,5 +62,9 @@ class Welcome extends CI_Controller {
 	public function logout(){
 		$this->session->sess_destroy();
     	redirect('welcome/index');
+	}
+
+	public function getProductCar(){
+		
 	}
 }
