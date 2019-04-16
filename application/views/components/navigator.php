@@ -1,5 +1,6 @@
+
 <link rel="icon" href="<?php echo base_url('assets/img/logo.png')?>">
-<nav class="navbar navbar-expand-lg navbar-light bg-dark border-bottom border-danger">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <a class="navbar-brand" href="#">
         <img src="<?php echo base_url('assets/img/logo.png')?>" width="30" height="30" alt="">
     </a>

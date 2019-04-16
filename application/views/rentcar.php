@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -14,6 +14,8 @@
     <style>
         .container{
             text-align:center;
+            margin-bottom:17px;
+            margin-top:17px;
         }
 
         .box{
@@ -28,11 +30,51 @@
             margin:3.2;
             text-align:left
         }
+        .card:hover{
+            -webkit-box-shadow: 5px 4px 23px -11px rgba(51,51,51,0.79);
+            -moz-box-shadow: 5px 4px 23px -11px rgba(51,51,51,0.79);
+            box-shadow: 5px 4px 23px -11px rgba(51,51,51,0.79);
+            transition-duration: 0.6s;
+        }
+        .ukuran{
+            height:30rem;
+            overflow:hidden;
+            background:#ddd
+        }
     </style>
 </head>
 <body>
-    
+        <div id="carouselExampleControls" class="carousel slide ukuran" data-ride="carousel">
+                        <?php  
+                            $img = array();
+                            foreach($products as $product){
+                                array_push($img,$product['image']);
+                            }
+                        ?>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="<?php echo $img[0]; ?>" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item ">
+                                <img src="<?php echo $img[1]; ?>" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item ">
+                                <img src="..." class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon bd-dark" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon bd-dark" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
     <div class="container">
+        <div class="row">
+            
+        </div>
         <div class="row">
             <div class="col title">
                 <h1>Rental Mobil</h1>
@@ -53,6 +95,9 @@
             <?php } ?>
         </div>
     </div>
+    <?php
+        $this->load->view('/components/footer');
+    ?>
     
 </body>
 </html>
