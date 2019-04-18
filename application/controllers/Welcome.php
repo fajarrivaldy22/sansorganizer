@@ -64,7 +64,20 @@ class Welcome extends CI_Controller {
     	redirect('welcome/index');
 	}
 
-	public function getProductCar(){
+	public function details(){
+		$id = $this->uri->segment(3);
+
+		$product = $this->RentCarModel->fetchdataspec($id);
+
+		if($product){
+			$data = array(
+				'id'=>$product->id,
+				'name'=>$product->name,
+				'image'=>$product->image,
+				'price'=>$product->price,
+			);
+			$this->load->view('itemdetail',$data);
+		}
 		
 	}
 }

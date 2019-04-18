@@ -6,4 +6,15 @@
             return $carData->result_array();
         }
 
+        public function fetchdataspec($id){
+            $this->db->where('id',$id);
+
+            $result = $this->db->get('product');
+            if($result->num_rows()==1){
+                return $result->row(0);
+            }else{
+                return false;
+            }
+        }
+
     }

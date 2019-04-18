@@ -6,8 +6,20 @@
     <title>Rental Equipment</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-    <script src="main.js"></script>
-    <?php $this->load->view('components/assets') ?>
+
+        <!-- DataTables CSS -->
+    <link href="css/addons/datatables.min.css" rel="stylesheet">
+    <!-- DataTables JS -->
+    <script href="js/addons/datatables.min.js" rel="stylesheet"></script>
+
+    <!-- DataTables Select CSS -->
+    <link href="css/addons/datatables-select.min.css" rel="stylesheet">
+    <!-- DataTables Select JS -->
+    <script href="js/addons/datatables-select.min.js" rel="stylesheet"></script>
+
+
+
+
     <?php 
         $this->load->view('components/navigator') ;
     ?>
@@ -80,24 +92,45 @@
                 <h1>Rental Mobil</h1>
             </div>
         </div>
-        <div class="row"><?php
-            foreach($products as $product){
-                ?>
-                <a style="text-decoration:none" href="http://www.google.com">
-                    <div class="card" style="width: 18rem;">
-                        <img src="<?php echo $product['image'] ?>" class="card-img-top" alt="...">
-                        <div class="body">
-                            <h5><?php echo $product['name'] ?></h5>
-                            <p><?php echo 'Rp '.number_format($product['price']) ?><p>
-                        </div>
-                    </div>
-                </a>
-            <?php } ?>
-        </div>
+        <table id="example" class="table table-striped " width="100%" >
+                <thead>
+                    <tr>
+                        <th class="th-sm">No</th>
+                        <th class="th-sm">Image</th>
+                        <th class="th-sm">Type</th>
+                        <th class="th-sm">Price</th>
+                        <th class="th-sm"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                        $no = 0;
+                        foreach($products as $product){
+                            $no++;
+                            ?>
+                        <tr>
+                            <td><?php echo $no?></td>
+                            <td><img src="<?php echo $product['image']?>" class="img-fluid rounded" style="width:200px;height:140px"></img></td>
+                            <td><?php echo $product['name']?></td>
+                            <td><?php echo 'Rp '.number_format($product['price'])?></td>
+                            <td><a class="btn btn-danger" style="text-decoration:none" href="<?php echo site_url().'/welcome/details/'.$product['id'] ?>">Order</a></td>
+                        </tr>
+                    <?php  } ?>
+                </tbody>
+
+            </table>
+
     </div>
+    
     <?php
         $this->load->view('/components/footer');
     ?>
-    
+
+    <?php $this->load->view('components/assets') ?>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        });
+    </script>
 </body>
 </html>
