@@ -92,7 +92,7 @@
                 <h1>Rental Mobil</h1>
             </div>
         </div>
-        <table id="example" class="table table-striped " width="100%" >
+        <table id="example" class="table " width="100%" >
                 <thead>
                     <tr>
                         <th class="th-sm">No</th>
