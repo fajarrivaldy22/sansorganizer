@@ -48,7 +48,8 @@ class Welcome extends CI_Controller {
 		if($login){
 			$sess_data = array(
 				'login' => 1,
-				'name' => $login->name
+				'name' => $login->name,
+				'id' => $login->id_user
 			);
 			$this->session->set_userdata($sess_data);
 			echo "<script>console.log('berhasil login')</script>";
@@ -71,7 +72,7 @@ class Welcome extends CI_Controller {
 
 		if($product){
 			$data = array(
-				'id'=>$product->id,
+				'id'=>$product->id_product,
 				'name'=>$product->name,
 				'image'=>$product->image,
 				'price'=>$product->price,
@@ -79,5 +80,12 @@ class Welcome extends CI_Controller {
 			$this->load->view('itemdetail',$data);
 		}
 		
+	}
+
+	public function order(){
+		$custid = $this->input->post('custId');
+		$productId = $this->input->post('productId');
+
+
 	}
 }

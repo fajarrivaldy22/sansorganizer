@@ -96,8 +96,8 @@
                 <thead>
                     <tr>
                         <th class="th-sm">No</th>
-                        <th class="th-sm">Image</th>
                         <th class="th-sm">Type</th>
+                        <th class="th-sm"></th>
                         <th class="th-sm">Price</th>
                         <th class="th-sm"></th>
                     </tr>
@@ -110,8 +110,8 @@
                             ?>
                         <tr>
                             <td><?php echo $no?></td>
-                            <td><img src="<?php echo $product['image']?>" class="img-fluid rounded" style="width:200px;height:140px"></img></td>
                             <td><?php echo $product['name']?></td>
+                            <td><img src="<?php echo $product['image']?>" class="img-fluid rounded" style="width:200px;height:120px"></img></td>
                             <td><?php echo 'Rp '.number_format($product['price'])?></td>
                             <td><a class="btn btn-danger" style="text-decoration:none" href="<?php echo site_url().'/welcome/details/'.$product['id'] ?>">Order</a></td>
                         </tr>

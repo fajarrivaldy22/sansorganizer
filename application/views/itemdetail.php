@@ -9,10 +9,10 @@
     <script src='main.js'></script>
     <?php 
     $this->load->view('components/assets'); 
-        $this->load->view('components/navigator') ;
+    $this->load->view('components/navigator') ;
     ?>
     <style>
-        .container{
+        .container1{
             height:100vh;
             margin-top:5em;
         }
@@ -20,15 +20,42 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col" > 
-                <img src="<?php echo $image ?>" class="img-fluid rounded gambar">
-            </div>
-            <div class="col" >
-                <h3><?php echo $name ?></h3>
+        <div class="container container1">
+            <div class="row">
+                <div class="col" > 
+                    <img src="<?php echo $image ?>" class="img-fluid rounded gambar">
+                </div>
+                <div class="col" >
+                    <div class="container rounded" >
+                        <div style="padding:5px">
+                            <div class="row">
+                                <h5><strong><?php echo $name ?></strong></h5>
+                            </div>
+                            <div class="row">
+                                <p>TOTAL <strong><?php echo ' Rp '.number_format($price).', '; ?></strong>for 1 day</p>
+                            </div>
+                        <?php if($this->session->userdata('login')==1){ ?>
+                            <div class="row">
+                                <form method='POST'>
+                                    <input type='hidden' name='custId' value="<?php echo $this->session->userdata('id')?>">
+                                    <input type='hidden' name='productId' value="<?php echo $id ?>">
+                                    <input type='submit' name='submit' value='Order Now' class='btn btn-sm btn-danger'>
+                                </form>
+                            </div>
+                        <?php }else{ ?>
+                            <div class="row">
+                                <div class="alert alert-danger" role="alert">
+                                    <strong>Sans Organizer</strong>
+                                    <p>Please login before ordering product</p>
+                                </div>
+                            </div>
+                        <?php } ?>
+                        <div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+        
 </body>
+<?php $this->load->view('components/footer') ; ?>
 </html>

@@ -7,7 +7,7 @@
         }
 
         public function fetchdataspec($id){
-            $this->db->where('id',$id);
+            $this->db->where('id_product',$id);
 
             $result = $this->db->get('product');
             if($result->num_rows()==1){
