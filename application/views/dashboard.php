@@ -14,13 +14,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             height:47px
         }
     </style>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php $this->load->view('components/navigator');
-        $name = $this->session->userdata('name');
-        echo $name
-    ?>
+    <?php $this->load->view('components/navigator');?>
 </head>
 <body>
+    <?php
+        if($this->session->userdata('login')==1){
+            $notification = $this->session->flashdata('notification');
+            if($notification==1){}
+        }
+?>
     
 </body>
 </html>

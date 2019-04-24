@@ -36,9 +36,10 @@
                             </div>
                         <?php if($this->session->userdata('login')==1){ ?>
                             <div class="row">
-                                <form method='POST'>
-                                    <input type='hidden' name='custId' value="<?php echo $this->session->userdata('id')?>">
-                                    <input type='hidden' name='productId' value="<?php echo $id ?>">
+                                <form method='POST' action="<?php echo site_url().'/welcome/order' ?>">
+                                    <input type='hidden' name='custId' value="<?php echo $this->session->userdata('id');?>">
+                                    <input type='hidden' name='productId' value="<?php echo $id ;?>">
+                                    <input type='hidden' name='total' value="<?php echo $price;?>">
                                     <input type='submit' name='submit' value='Order Now' class='btn btn-sm btn-danger'>
                                 </form>
                             </div>

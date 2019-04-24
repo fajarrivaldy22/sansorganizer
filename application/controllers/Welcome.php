@@ -39,20 +39,26 @@ class Welcome extends CI_Controller {
 		$this->load->view('rentcar',$data);
 	}
 
+	public function registrationform(){
+		$this->load->view('registrasi');
+	}
+
 	public function login(){
 		$email =  $this->input->post('email');
 		$password = $this->input->post('password');
 
 		$login = $this->LoginModel->loginuser($email,$password);
 
+		$transaction = $this->RentCarModel->gettransaction($login->id_user);
+
 		if($login){
+			$this->session->set_flashdata('notification',1);
 			$sess_data = array(
 				'login' => 1,
 				'name' => $login->name,
 				'id' => $login->id_user
 			);
 			$this->session->set_userdata($sess_data);
-			echo "<script>console.log('berhasil login')</script>";
 			redirect('welcome/index');
 		}else{
 			echo "<script>console.log('gagal login')</script>";
@@ -83,9 +89,47 @@ class Welcome extends CI_Controller {
 	}
 
 	public function order(){
-		$custid = $this->input->post('custId');
-		$productId = $this->input->post('productId');
+		$custid = $_POST['custId'];
+		$productId = $_POST['productId'];
+		$total = $_POST['total'];
 
+		$data = array(
+			'id_product'=>$productId,
+			'id_user'=>$custid,
+			'total'=>$total,
+			'status'=>'waiting for payment'
+		);
 
+		$result = $this->RentCarModel->order($data);
+
+		if($result){
+			redirect('welcome/rentaleventequipment');
+		}else{
+			redirect('welcome/index');
+		}
+	}
+
+	public function registeruser(){
+		$name = $this->session->post('name');
+		$email = $this->session->post('email');
+		$pwd  = $this->session->post('password');
+		$telp = $this->session->post('notelepon');
+		$norek = $this->session->post('norek');
+
+		$data = array(
+			'name'=>$name,
+			'email'=>$email,
+			'password'=>$pwd,
+			'telepon'=>$telp,
+			'norek'=>$norek
+		);
+
+		$result = $this->LoginModel->regisuser($data);
+
+		if($result){
+			echo 'berhasil';
+		}else{
+			echo 'gagal';
+		}
 	}
 }

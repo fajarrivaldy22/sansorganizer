@@ -14,4 +14,14 @@ class LoginModel extends CI_Model
             return false;
         }   
     }
+
+    public function regisuser($data){
+        $q = "INSERT INTO `user`(`name`, `nomor_rekening`, `email`, `password`, `address`, `type`) VALUES ('$data->name','$data->norek','$data->email','$data->password','$data->address',$data->0)";
+        $r = $this->db->query($q);
+        if($r){
+            return True;
+        }else{
+            return False;
+        }
+    }
 }

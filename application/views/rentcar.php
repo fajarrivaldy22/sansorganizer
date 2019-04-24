@@ -113,7 +113,7 @@
                             <td><?php echo $product['name']?></td>
                             <td><img src="<?php echo $product['image']?>" class="img-fluid rounded" style="width:200px;height:120px"></img></td>
                             <td><?php echo 'Rp '.number_format($product['price'])?></td>
-                            <td><a class="btn btn-danger" style="text-decoration:none" href="<?php echo site_url().'/welcome/details/'.$product['id'] ?>">Order</a></td>
+                            <td><a class="btn btn-danger" style="text-decoration:none" href="<?php echo site_url().'/welcome/details/'.$product['id_product'] ?>">Order</a></td>
                         </tr>
                     <?php  } ?>
                 </tbody>
