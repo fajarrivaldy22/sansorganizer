@@ -27,7 +27,15 @@ class Welcome extends CI_Controller {
 	
 	public function index()
 	{
-		$this->load->view('dashboard');
+		if($this->session->userdata('login')!=1){
+			$this->load->view('dashboard');
+		}else{
+			$id = $this->session->userdata('id');
+			$transaction = $this->RentCarModel->gettransaction($id);
+			$this->session->set_flashdata('notif',$transaction);
+			$this->load->view('dashboard');
+		}
+		
 	}
 	
 	public function rentaleventequipment(){
@@ -49,17 +57,29 @@ class Welcome extends CI_Controller {
 
 		$login = $this->LoginModel->loginuser($email,$password);
 
-		$transaction = $this->RentCarModel->gettransaction($login->id_user);
-
+		
 		if($login){
-			$this->session->set_flashdata('notification',1);
-			$sess_data = array(
-				'login' => 1,
-				'name' => $login->name,
-				'id' => $login->id_user
-			);
-			$this->session->set_userdata($sess_data);
-			redirect('welcome/index');
+			if($login->type==1){
+				$this->session->set_flashdata('notification',1);
+				$sess_data = array(
+					'login' => 1,
+					'name' => $login->name,
+					'id' => $login->id_user,
+					'type'=>$login->type
+				);
+				$this->session->set_userdata($sess_data);
+				redirect('welcome/admin');
+			}else{
+				$this->session->set_flashdata('notification',1);
+				$sess_data = array(
+					'login' => 1,
+					'name' => $login->name,
+					'id' => $login->id_user
+				);
+				$_SESSION['transaction'] = 1;
+				$this->session->set_userdata($sess_data);
+				redirect('welcome/index');
+			}
 		}else{
 			echo "<script>console.log('gagal login')</script>";
 			redirect('welcome/index');
@@ -110,26 +130,77 @@ class Welcome extends CI_Controller {
 	}
 
 	public function registeruser(){
-		$name = $this->session->post('name');
-		$email = $this->session->post('email');
-		$pwd  = $this->session->post('password');
-		$telp = $this->session->post('notelepon');
-		$norek = $this->session->post('norek');
+		$name = $_POST['name'];
+		$email = $_POST['email'];
+		$pwd  = $_POST['password'];
+		$telp = $_POST['notelepon'];
+		$norek = $_POST['norek'];
+		$addr = $_POST['address'];
 
 		$data = array(
 			'name'=>$name,
 			'email'=>$email,
 			'password'=>$pwd,
 			'telepon'=>$telp,
-			'norek'=>$norek
+			'norek'=>$norek,
+			'address'=>$addr
 		);
 
 		$result = $this->LoginModel->regisuser($data);
 
 		if($result){
-			echo 'berhasil';
+			$this->session->set_flashdata('alert', 'registrasi_berhasil');;
+			redirect('/welcome/index');
+			
 		}else{
-			echo 'gagal';
+			$this->session->set_flashdata('alert', 'registrasi_gagal');;
+			redirect('/welcome/index');
+			
+		}
+	}
+
+	public function admin(){
+		$user = $this->LoginModel->getalluser();
+		$transaction = $this->RentCarModel->getalltransaction();
+		$product = $this->RentCarModel->getallproduct();
+
+		$this->session->set_flashdata('product',$product);
+		$this->session->set_flashdata('transaction',$transaction);
+		$this->session->set_flashdata('user',$user);
+		$this->load->view('admin');
+	}
+
+	public function lost(){
+		
+		$this->load->view('lost');
+	}
+
+	public function addproduct(){
+		$data=array(
+			'type'=>$this->input->post('type'),
+			'image'=>$this->input->post('image'),
+			'price'=>$this->input->post('price'),
+			'owner'=>$this->input->post('owner')
+		);
+
+		$result = $this->RentCarModel->addproductmodel($data);
+
+		if($result){
+			redirect('/welcome/admin');
+		}else{
+			redirect('/welcome/admin');
+		}
+	}
+
+	public function paymentverification(){
+		$id = $this->input->post('id');
+		$no = $this->input->post('bukti');
+
+		$result = $this->RentCarModel->paymentverification($id,$no);
+		if($result){
+			redirect('/welcome/admin');
+		}else{
+			redirect('/welcome/admin');
 		}
 	}
 }

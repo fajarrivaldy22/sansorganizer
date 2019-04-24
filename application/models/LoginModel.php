@@ -16,12 +16,33 @@ class LoginModel extends CI_Model
     }
 
     public function regisuser($data){
-        $q = "INSERT INTO `user`(`name`, `nomor_rekening`, `email`, `password`, `address`, `type`) VALUES ('$data->name','$data->norek','$data->email','$data->password','$data->address',$data->0)";
-        $r = $this->db->query($q);
-        if($r){
-            return True;
+
+
+        $name = $data['name'];
+        $norek = $data['norek'];
+        $email = $data['email'];
+        $password = $data['password'];
+        $addr = $data['address'];
+
+        $this->db->where('email',$email);
+        
+        $result = $this->db->get('user');
+        if($result->num_rows()==0){
+            $q = "INSERT INTO `user`(`name`, `nomor_rekening`, `email`, `password`, `address`, `type`) VALUES ('$name','$norek','$email','$password','$addr',0)";
+            $r = $this->db->query($q);
+            if($r){
+                return True;
+            }else{
+                return False;
+            }
         }else{
-            return False;
+            return FALSE;
         }
+        
+    }
+
+    public function getalluser(){
+        $result = $this->db->get('user');
+        return $result->result_array();
     }
 }

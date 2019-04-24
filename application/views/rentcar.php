@@ -65,13 +65,13 @@
                         ?>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="<?php echo $img[0]; ?>" class="d-block w-100" alt="...">
+                                <img src="<?php echo $img[0]; ?>" class="d-block w-100" alt="..." style="width:100%;height:100%">
                             </div>
                             <div class="carousel-item ">
-                                <img src="<?php echo $img[1]; ?>" class="d-block w-100" alt="...">
+                                <img src="<?php echo $img[1]; ?>" class="d-block w-100" alt="..." style="width:100%;height:100%">
                             </div>
                             <div class="carousel-item ">
-                                <img src="..." class="d-block w-100" alt="...">
+                                <img src="<?php echo $img[2]; ?>" class="d-block w-100" alt="...">
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

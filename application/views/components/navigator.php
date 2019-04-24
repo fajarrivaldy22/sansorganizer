@@ -97,13 +97,37 @@
                             <div class="modal-content">
                                 
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="LoginLabel">Login</h5>
+                                        <h5 class="modal-title" id="LoginLabel">Notification</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        
+                                        <table class='table'>
+                                                    <tr>
+                                                        <th>No Transaction</th>
+                                                        <th>Payment</th>
+                                                        <th>accout</th>
+                                                    </tr>
+                                            <?php 
+                                            
+                                            if($this->session->userdata('login')==1){ 
+                                                    $transaction = $this->session->flashdata('notif');
+                                                    foreach($transaction as $t){ ?>
+                                                    <tr>
+                                                        <td><?php echo $t['id_trasaction']; ?></td>
+                                                        <td><?php echo $t['status']; ?></td>
+                                                        <td>Pay to Account Number BCA : 012154854</td>
+                                                    </tr>
+                                                    
+                                            
+
+                                            <?php 
+                                            }
+                                            }else{ ?>
+
+                                            <?php } ?>
+                                        </table>
                                     </div>
                                     <div class="modal-footer">
                                         
@@ -117,8 +141,6 @@
                     <?php
                 }
             ?>
-
-             
     </div>
 </nav>
 
