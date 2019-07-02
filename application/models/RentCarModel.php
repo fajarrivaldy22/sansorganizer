@@ -92,4 +92,33 @@
             }
         }
 
+        function editproductmodel($data){
+            $id = $data['id'];
+            $type = $data['type'];
+            $img = $data['image'];
+            $prc = $data['price'];
+            $owner = $data['owner'];
+
+            $q = "UPDATE `product` SET `name`='$type',`image`='$img',`price`=$prc,`pemilik`='$owner' WHERE `id_product`=$id";
+
+            $result = $this->db->query($q);
+
+            if($result){
+                return TRUE;
+            }else{
+                return FALSE;
+            }
+        }
+
+        function deleteproduct($id){
+            $q = "DELETE FROM product WHERE id_product=$id ;";
+            $result = $this->db->query($q);
+
+            if($result){
+                return TRUE;
+            }else{
+                return FALSE;
+            }
+        }
+
     }

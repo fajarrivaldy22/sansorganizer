@@ -203,4 +203,26 @@ class Welcome extends CI_Controller {
 			redirect('/welcome/admin');
 		}
 	}
+
+	public function editproduct(){
+		$data=array(
+			'id'=>$this->input->post('number_product'),
+			'type'=>$this->input->post('type'),
+			'image'=>$this->input->post('image'),
+			'price'=>$this->input->post('price'),
+			'owner'=>$this->input->post('owner')
+		);
+
+		$result = $this->RentCarModel->editproductmodel($data);
+
+		redirect('/welcome/admin');
+	}
+
+	public function delteprodut(){
+		$id = $this->input->post('number_product');
+
+		$result = $this->RentCarModel->deleteproduct($id);
+
+		redirect('/welcome/admin');
+	}
 }

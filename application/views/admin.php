@@ -253,6 +253,7 @@
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
+                                                <tbody>
                                                 <?php  $data = $this->session->flashdata('product') ;
                                                     foreach($data as $d){ ?>
                                                         <tr>
@@ -262,11 +263,88 @@
                                                             <td><?php echo number_format($d['price']) ?></td>
                                                             <td><?php echo $d['pemilik'] ?></td>
                                                             <td><?php echo $d['created'] ?></td>
-                                                            <td><a class="btn-sm btn-danger" href=" " style="margin:2px">edit</a><a class="btn-sm btn-danger" href=" " style="margin:2px">delete</a></td>
+                                                            <td>
+                                                                <a class="btn-sm btn-danger" href=" " style="margin:2px" data-toggle="modal" data-target="#edit<?php echo $d['id_product'] ?>"  href="">edit</a>
+                                                                <!-- Modal -->
+                                                                    <div class="modal fade" id="edit<?php echo $d['id_product'] ?>" tabindex="-1" role="dialog" aria-labelledby="LoginLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                <form method='post' action="<?php echo site_url().'/welcome/editproduct'; ?>">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="LoginLabel">Edit Product</h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <input type="hidden" class="form-control" placeholder="Type" name='number_product' value="<?php echo $d['id_product']; ?>" required>
+                                                                                            <div class="form-group row">
+                                                                                                <label for="staticEmail" class="col-sm-2 col-form-label">Type</label>
+                                                                                                <div class="col-sm-10">
+                                                                                                    <input type="text" class="form-control" placeholder="Type" name='type' value="<?php echo $d['name']; ?>" required>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="form-group row">
+                                                                                                <label for="staticEmail" class="col-sm-2 col-form-label">Image</label>
+                                                                                                <div class="col-sm-10">
+                                                                                                    <input type="text" class="form-control" placeholder="Image" name='image' value="<?php echo $d['image']; ?>" required>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="form-group row">
+                                                                                                <label for="staticEmail" class="col-sm-2 col-form-label">Price</label>
+                                                                                                <div class="col-sm-10">
+                                                                                                    <input type="number" class="form-control" placeholder="Price" name='price' value="<?php echo $d['price']; ?>" required>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div class="form-group row">
+                                                                                                <label for="staticEmail" class="col-sm-2 col-form-label">Owner</label>
+                                                                                                <div class="col-sm-10">
+                                                                                                    <input type="text" class="form-control" placeholder="Owner" name='owner' value="<?php echo $d['pemilik']; ?>" required>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <input type="submit" class="btn btn-sm btn-danger" id="submit" name='submit' value='Publish'>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--end of modal -->  
+                                                                <a class="btn-sm btn-danger" href=" " style="margin:2px"  data-toggle="modal" data-target="#delete<?php echo $d['id_product'] ?>"  href="">delete</a>
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="delete<?php echo $d['id_product'] ?>" tabindex="-1" role="dialog" aria-labelledby="LoginLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                <form method='post' action="<?php echo site_url().'/welcome/delteprodut'; ?>">
+                                                                                    <div class="modal-header">
+                                                                                        <h5 class="modal-title" id="LoginLabel">Delete Product</h5>
+                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                            <?php echo " Are you sure want delete <strong>".$d['name']."</strong> ?"; ?>
+                                                                                            <input type="hidden" class="form-control" placeholder="Type" name='number_product' value="<?php echo $d['id_product']; ?>" required>
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <input type="submit" class="btn btn-sm btn-danger" id="submit" name='submit' value='Yes, iam sure'>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--end of modal -->  
+                                                            </td>
                                                         </tr>
                                                 <?php }
                                                 ?>
-                                                <tbody>
+                                                
                                                 </tbody>
                                     </table>
                             </div>
